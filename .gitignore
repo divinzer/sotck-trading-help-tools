@@ -6,5 +6,8 @@ session.session
 __pycache__/
 .conda/
 
+# feeds.xml 파일은 프로젝트에 포함되어야 하므로 무시하지 않음
+
 # data 폴더 내의 모든 파일 및 하위 폴더 무시
 messages/
+blog/
