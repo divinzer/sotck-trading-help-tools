@@ -1,0 +1,10 @@
+# Telegram 인증정보 및 로그인 세션
+config.json
+session.session
+
+# Python 캐시 및 프로젝트 로컬 환경
+__pycache__/
+.conda/
+
+# data 폴더 내의 모든 파일 및 하위 폴더 무시
+messages/
