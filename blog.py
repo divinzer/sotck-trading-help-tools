@@ -15,7 +15,7 @@ import requests
 from readability import Document
 
 OPML_FILE = "feeds.xml"
-BLOG_DIR = Path("blog")
+BLOG_DIR = Path("data/blog")
 HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
 
 IMG_EXTS = {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp"}

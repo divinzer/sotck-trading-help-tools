@@ -21,7 +21,7 @@ KST = ZoneInfo("Asia/Seoul")
 # 수집 기간은 시작일과 종료일을 모두 포함한다.
 DATE_TO = date.today()
 # DATE_FROM = DATE_TO - timedelta(days=6)
-DATE_FROM = DATE_TO
+DATE_FROM = date.fromisoformat("2026-08-01")  # 수집 시작일을 고정해 테스트한다.
 
 # 메시지 안에서 HTTP/HTTPS URL만 찾기 위한 정규식이다.
 URL_PATTERN = re.compile(r"https?://[^\s<>]+")
@@ -29,8 +29,8 @@ URL_PATTERN = re.compile(r"https?://[^\s<>]+")
 MAX_URL_BODY_BYTES = 2_000_000
 # 응답하지 않는 웹 사이트 때문에 전체 수집이 멈추지 않도록 요청 시간을 제한한다.
 URL_TIMEOUT_SECONDS = 10
-# 채널별 Markdown과 첨부파일을 모두 messages 아래에 저장한다.
-MEDIA_ROOT = Path("messages")
+# 채널별 Markdown과 첨부파일을 모두 data/telegram 아래에 저장한다.
+MEDIA_ROOT = Path("data") / "telegram"
 
 
 def load_config() -> dict[str, int | str]:
@@ -321,7 +321,7 @@ def main() -> None:
     """메시지 수집, URL 본문 보강, 증분 필터링, Markdown 저장을 순서대로 실행한다."""
     config = load_config()
     channels = asyncio.run(fetch_channels(config))
-    output_dir = Path("messages")
+    output_dir = MEDIA_ROOT
     output_dir.mkdir(exist_ok=True)
 
     # 이미 저장된 파일의 마지막 시각 이후 메시지만 남겨 중복 저장을 방지한다.
